@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { OrdersPage } from '../orders/orders';
+import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the CartProductsReviewPage page.
@@ -35,5 +36,10 @@ export class CartProductsReviewPage {
   }
   gotoOrderListing(){
    this.navCtrl.push(OrdersPage); 
+  
+  }
+
+  gotoProfile(){
+    this.navCtrl.push(ProfilePage);
   }
 }
