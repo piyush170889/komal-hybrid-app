@@ -1,0 +1,43 @@
+page-login
+{
+    $font-family-base: "Consolas";
+    body
+    {
+        font-family: "Consolas" !important;
+    }
+    .log>.button-md
+    {
+        background-color: #009088;
+    }
+    .log>.button-md:hover
+    {
+        background-color: #009088;
+    }
+
+    .item-md
+    {
+        background-color: #282838;
+    }
+    .skip>.button-md
+    {
+        background-color: #282838;
+        border: solid;
+        border-width: 1px;
+        border-color:  #009088;
+    }
+    .skip>.button-md:hover
+    {
+        background-color: #282838;
+        border: solid;
+        border-width: 1px;
+        border-color:  #009088;
+    }
+    .fp
+    {
+        text-align: right;
+    }
+    .reg,.title
+    {
+        text-align: center;
+    }
+}

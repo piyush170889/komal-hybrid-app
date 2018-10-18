@@ -1,0 +1,49 @@
+page-profile {
+
+    ion-textarea{
+        border-radius: 4px;
+        
+        // padding: 30px;
+       
+       
+      
+        
+        border-style: solid;
+        border-width: 1px;
+        width: 252px;
+    }
+
+    ion-select{
+        border-radius: 4px;
+        border-style: solid;
+        border-width: 1px;
+        width: 900px;
+    }
+    select{
+        border-radius: 4px;
+        border-style: solid;
+        border-width: 1px;
+        width: 243px;
+        border-width: 1px;
+        height:40px ;
+    }
+    #b1{
+        height:  50px;
+        background-color: #009088;
+    }
+    ion-item {
+        border-top: none;
+        border-bottom: none;
+          
+     }
+    
+    
+    // .card-md .item-inner { border-bottom: 1px solid #dedede !important; }
+    
+    ion-input{
+            
+        // border-top: none;
+        // border-bottom: none;
+        border-bottom: 1px solid #dedede !important;
+     }
+}

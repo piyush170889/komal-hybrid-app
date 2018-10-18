@@ -1,0 +1,154 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content padding>
+ 
+  <ion-item no-lines>
+    <ion-label style="color: #009088; ">Edit Profile</ion-label>
+    <ion-toggle [(ngModel)]="edit" (click)="toggle()" [disabled]="false" ></ion-toggle>
+  </ion-item>
+
+    <ion-card>
+
+    
+      
+        <ion-card-content>
+
+            
+         
+            <ion-label style="color: #009088; padding: 5px;"> PERSONAL INFORMATION</ion-label>
+          
+            
+          
+            <ion-item>
+           
+          <ion-label floating >First Name*</ion-label>
+          <ion-input  type="text"  [(ngModel)]="customer.firstName" name="firstName"  [disabled]="isDisable"></ion-input>
+        </ion-item>  
+      
+     
+    
+    
+        <ion-item>
+            <ion-label floating>Last Name*</ion-label>
+            <ion-input  type="text"  [(ngModel)]="customer.lastName" name="lastName" [disabled]="isDisable"></ion-input>
+            
+          </ion-item>
+        
+          <ion-item>
+              <ion-label floating>Email</ion-label>
+              <ion-input  type="email"  [(ngModel)]="customer.emailId" name="email" [disabled]="isDisable"></ion-input>
+            </ion-item>
+      
+            <ion-item>
+                <ion-label floating>Display Name</ion-label>
+                <ion-input  type="text"  [(ngModel)]="displayName" name="displayName" [disabled]="isDisable"></ion-input>
+              </ion-item>
+         
+              <ion-item>
+                  <ion-label floating>GST No*</ion-label>
+                  <ion-input  type="text"  [(ngModel)]="customer.gstin" name="gst" [disabled]="isDisable"></ion-input>
+                </ion-item>
+      
+               
+              <br>
+              <br>
+                 
+                      <ion-label style="color: #009088; "> ADDRESS INFORMATION</ion-label>
+                  
+                  <ion-item>  
+                      <ion-label floating>Pin Code*</ion-label>
+                      <ion-input  type="text"  [(ngModel)]="customer.pincode" name="pincode" [disabled]="isDisable" ></ion-input>
+                    </ion-item>
+                    
+                    <ion-item>
+                    <ion-label floating style="text-align:left; margin-right:20px ;" >Address*</ion-label>
+                    <ion-textarea  rows="5" maxLength="600" [(ngModel)]="customer.addresss" [disabled]="isDisable"></ion-textarea>
+                  </ion-item>
+<!-- <ion-item></ion-item> -->
+<ion-grid>
+  <ion-row>
+    
+                  <ion-item  id="s1" >   
+                      <ion-select  [disabled]="isDisable" >
+                          <ion-label stacked>Select City</ion-label>
+                                <ion-option selected>Select City</ion-option>
+                          <ion-option >Pune</ion-option>
+                          <ion-option>Naded</ion-option>
+                        </ion-select>
+                        </ion-item>
+
+                      
+                      </ion-row>
+
+                        <!-- <ion-item></ion-item> -->
+
+<ion-row>
+                        <ion-item>   
+                            <ion-select [disabled]="isDisable">
+                                <ion-label stacked>Select State</ion-label>
+                                <ion-option selected>Select State</ion-option>
+                                <ion-option >Karnataka</ion-option>
+                                <ion-option>Maharastra</ion-option>
+                            </ion-select>
+                              </ion-item>
+                            </ion-row>
+                            </ion-grid>
+                    <ion-item>
+                        <ion-label floating>Mark*</ion-label>
+                        <ion-input  type="text"  [(ngModel)]="customer.mark" name="mark" [disabled]="isDisable"></ion-input>
+                      </ion-item>
+
+                      <ion-item>
+                          <ion-label floating>Destination*</ion-label>
+                          <ion-input  type="text"  [(ngModel)]="customer.destination" name="destination" [disabled]="isDisable" ></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label floating>transpoterName*</ion-label>
+                            <ion-input  type="text"  [(ngModel)]="customer.transpoterName" name="transpoterName" [disabled]="isDisable"></ion-input>
+                          </ion-item>
+                    
+
+        </ion-card-content>
+      
+      </ion-card>
+      
+      <ion-card>
+        <ion-card-content>
+            <ion-item>
+                <ion-label floating>contactNo*</ion-label>
+                <ion-input  type="text"  [(ngModel)]="customer.contactNo" name="contactNo" [disabled]="true"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label floating>userType*</ion-label>
+                  <ion-input  type="text"  [(ngModel)]="customer.userType" name="userType" [disabled]="true"></ion-input>
+                </ion-item>
+
+                <ion-label style="text-align: center; color:#009088; " >Change Password</ion-label>
+                    </ion-card-content>
+                      
+        </ion-card>
+        
+        
+       
+
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <button ion-button full  id="b1">UPDATE</button>
+    </ion-toolbar>
+  </ion-footer>

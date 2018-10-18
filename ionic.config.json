@@ -1,0 +1,7 @@
+{
+  "name": "komal-steel",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
