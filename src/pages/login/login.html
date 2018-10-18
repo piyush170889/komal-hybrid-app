@@ -21,12 +21,12 @@
         <ion-input type="password" placeholder="Password"></ion-input>
       </ion-item>
     
-    <div class="fp">Forget Password?</div>
-    <div class="log">
-      <button ion-button block>Login</button>
-    </div>
-    <div class="skip">
-      <button ion-button skip block>Skip Login</button>
-    </div>
-    <div class="reg">No account yet? Register Now</div>
+      <div class="fp">Forget Password?</div>
+      <div class="log">
+        <button (click)="gotoHomeScreen()" ion-button block>Login</button>
+      </div>
+      <div class="skip">
+        <button (click)="gotoHomeScreen()" ion-button skip block>Skip Login</button>
+      </div>
+    <div class="reg">No account yet? <button (click)="sendOtpRegister()" ion-button clear>Register Now</button> </div>
 </ion-content>

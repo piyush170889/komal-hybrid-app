@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomeScreenPage } from '../home-screen/home-screen';
+import { SendOtpPage } from '../send-otp/send-otp';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,5 +23,14 @@ export class LoginPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+
+  gotoHomeScreen(){
+    this.navCtrl.push(HomeScreenPage);
+  }
+
+  sendOtpRegister(){
+    this.navCtrl.push(SendOtpPage);
+  }
+
 
 }
