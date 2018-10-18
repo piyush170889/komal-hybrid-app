@@ -1,5 +1,10 @@
 page-order 
 {
+    .status
+    {
+        background: #009088;
+        color: white;
+    }
     .order-info
     {
         margin: 10px;
@@ -9,6 +14,25 @@ page-order
         color: #009088;
         display: inline;
     }
-
-
+    .icn-first
+    {
+        color: #009088;
+    }
+    .icn-middle
+    {
+        text-align: center;
+        color: #009088;
+    }
+    .icn-last
+    {
+        text-align: right;
+        color: #009088;
+    }
+    .tab
+    {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #009088;
+        text-align: center;
+    }
 }

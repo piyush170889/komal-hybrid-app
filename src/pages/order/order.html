@@ -7,35 +7,30 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>order</ion-title>
+    <ion-title>Order</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <div class="order-info">
-      <ion-grid>
-        <ion-row>
-          <ion-col></ion-col>
-          <ion-col></ion-col>
-        </ion-row>
-      </ion-grid>
-        <div>Order Id: <div class="o-id">260</div></div>
-        <div>Placed On 2018-10-15</div>
-        </div>
+        <ion-grid>
+            <ion-row>
+              <ion-col col-8>Order Id: <div class="o-id">260</div><br>Placed On 2018-10-15</ion-col>
+              <ion-col col-4>
+                <ion-chip class="status">
+                  <ion-label>Pending</ion-label>
+                </ion-chip>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         <ion-card>
             <ion-card-content>
                 <ion-grid>
                   <ion-row>
-                      <ion-col col-8>
-                        <ion-chip>
-                          <ion-label>Pending</ion-label>
-                        </ion-chip>
-                      </ion-col>
-                      <ion-col col-4>
-                        <div class="o-details">Details</div>
-                      </ion-col>
+                    <ion-col col-4 class="icn-first"><ion-icon name="checkmark-circle"></ion-icon></ion-col>
+                    <ion-col col-4 class="icn-middle"><ion-icon name="bus"></ion-icon></ion-col>
+                    <ion-col col-4 class="icn-last"><ion-icon name="basket"></ion-icon></ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col col-5>
@@ -46,6 +41,20 @@
                     </ion-col>  
                   </ion-row>
         
+                  <ion-row>
+                    <ion-col>LR Information:</ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>LR No.:</ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>No of cartoon Loaded:</ion-col>
+                  </ion-row>
+                  <ion-row>
+                      <ion-col>Product Information:</ion-col>
+                  </ion-row>
+                  <ion-row><ion-col col-4 class="tab">Product</ion-col><ion-col col-4 class="tab">Type</ion-col><ion-col col-4 class="tab">Qty</ion-col></ion-row>
+                  <ion-row><ion-col col-4 class="tab">Red Cap Oil Can</ion-col><ion-col col-4 class="tab">450 ml</ion-col><ion-col col-4 class="tab">10</ion-col></ion-row>
                   <ion-row>
                       <ion-col col-5>
                           Address:
@@ -69,8 +78,7 @@
                           <ion-col col-7>
                             Maharashtra
                           </ion-col>  
-                        </ion-row>
-          
+                        </ion-row>          
               </ion-grid>
         
             </ion-card-content>
