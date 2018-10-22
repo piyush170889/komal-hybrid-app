@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { VerifyOtpPage } from '../verify-otp/verify-otp';
+import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 
 /**
  * Generated class for the SendOtpPage page.
@@ -33,6 +34,11 @@ export class SendOtpPage {
   openVerifyOtp(){
     this.presentToast();
     this.navCtrl.push(VerifyOtpPage);
+  }
+
+  openForgetPass(){
+    this.presentToast();
+    this.navCtrl.push(ForgotPasswordPage);
   }
 
 }

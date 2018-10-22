@@ -21,6 +21,7 @@ import { ContactusPage } from '../pages/contactus/contactus';
 import { LoginPage } from '../pages/login/login';
 import { OrderPage } from '../pages/order/order';
 import { OrdersPage } from '../pages/orders/orders';
+import { AddProductPage } from '../pages/add-product/add-product';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { OrdersPage } from '../pages/orders/orders';
     ContactusPage,
     LoginPage,
     OrderPage,
-    OrdersPage
+    OrdersPage,
+    AddProductPage
 
   ],
   imports: [
@@ -63,7 +65,8 @@ import { OrdersPage } from '../pages/orders/orders';
     ContactusPage,
     LoginPage,
     OrderPage,
-    OrdersPage
+    OrdersPage,
+    AddProductPage
 
   ],
   providers: [

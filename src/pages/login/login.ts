@@ -32,5 +32,9 @@ export class LoginPage {
     this.navCtrl.push(SendOtpPage);
   }
 
+  openSendOtp(){
+    this.navCtrl.push(SendOtpPage);
+  }
+
 
 }
