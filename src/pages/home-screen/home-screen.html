@@ -6,12 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Komal Trading Corporation</ion-title>
     
     <ion-buttons end>
       <button (click)="gotoCarts()" ion-button clear>
-          <ion-icon color="primary" ios="ios-cart" md="md-cart"></ion-icon>
+          <ion-icon color="light" ios="ios-cart" md="md-cart"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -23,23 +23,24 @@
 </ion-row>
 
 <ion-item>
-  <ion-label><strong>Tap below to select category</strong> </ion-label>
-  <ion-select>
-    <ion-option>Select</ion-option>
-  <ion-option>Stainless Steel Cooker</ion-option>
+  <ion-label><strong>Select category</strong> </ion-label>
+  <ion-select #C (ionChange)="changeSubCategory(C.value)" [(ngModel)]="categoryId" >
+  <ion-option *ngFor="let category of categoryDetailsArray" value="{{category.id}}" selected>{{category.name}}</ion-option>
   </ion-select>
 </ion-item>
 
 
-<ion-label>Stainless Steel Cooker</ion-label>
 <ion-grid id="imagelist">
+  <ion-row>
+    <ion-col col-12>
+      <ion-label class="cat-name-label">{{categoryName}}</ion-label>
+    </ion-col>
+</ion-row>
 <ion-row>
-  <ion-col col-6>
-    <img (click)="opneProductDetails()" id="imags" src="https://rukminim1.flixcart.com/image/832/832/pot-pan/e/r/c/ktp001-komal-original-imae4j9mbsuqb5ya.jpeg?q=70">
+  <ion-col col-6 *ngFor="let subCategory of subCategoryDetails">
+    <img (click)="opneProductDetails()" id="imags" src="{{subCategory.url}}">
   </ion-col>
-  <ion-col col-6>
-    <img (click)="opneProductDetails()" id ="imags" src="https://rukminim1.flixcart.com/image/832/832/jjelq4w0/pressure-cooker/a/j/n/bigboss35l-nelco-original-imaf46qvqmmz38hq.jpeg?q=70">
-  </ion-col>
+  
 </ion-row>
 </ion-grid>
 </ion-content>

@@ -22,6 +22,11 @@ import { LoginPage } from '../pages/login/login';
 import { OrderPage } from '../pages/order/order';
 import { OrdersPage } from '../pages/orders/orders';
 import { AddProductPage } from '../pages/add-product/add-product';
+import { RestserviceProvider } from '../providers/restservice/restservice';
+import { ConstantsProvider } from '../providers/constants/constants';
+import { CommonUtilityProvider } from '../providers/common-utility/common-utility';
+import { Network } from '@ionic-native/network';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -47,6 +52,7 @@ import { AddProductPage } from '../pages/add-product/add-product';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -72,7 +78,11 @@ import { AddProductPage } from '../pages/add-product/add-product';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RestserviceProvider,
+    ConstantsProvider,
+    CommonUtilityProvider,
+    Network
   ]
 })
 export class AppModule {}

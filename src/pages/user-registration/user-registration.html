@@ -1,34 +1,33 @@
 
 
 <ion-content padding class="background-color">
-  <form>
   <ion-label class="heading-label">Register</ion-label><br>
   <ion-grid>
     <ion-row>
       <ion-col col-6>
-        <ion-input type="text" class="input-format" placeholder="First Name*" required></ion-input>
+        <ion-input type="text" class="input-format" [(ngModel)]="userDtls.firstName" placeholder="First Name*" required></ion-input>
         <hr class="horizonta-line-format">
       </ion-col>
       <ion-col col-6>
-        <ion-input type="text" class="input-format" placeholder="Last Name*" required></ion-input>
+        <ion-input type="text" class="input-format" [(ngModel)]="userDtls.lastName" placeholder="Last Name*" required></ion-input>
         <hr class="horizonta-line-format">
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-12>
-        <ion-input type="text" class="input-format" placeholder="Contact No.*" required></ion-input>
+        <ion-input type="text" class="input-format" [(ngModel)]="userDtls.cntc_num" placeholder="Contact No.*" required></ion-input>
         <hr class="horizonta-line-format">
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-12>
-        <ion-input type="text" class="input-format" placeholder="Email" required></ion-input>
+        <ion-input type="text" class="input-format" [(ngModel)]="userDtls.loginId" placeholder="Email" required></ion-input>
         <hr class="horizonta-line-format">
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-10>
-          <ion-input [type]="getType()" class="input-format" placeholder="Password*"></ion-input>
+          <ion-input [type]="getType()" class="input-format" [(ngModel)]="userDtls.password" placeholder="Password*"></ion-input>
          </ion-col> 
           <ion-col col-2> 
           <ion-icon item-right (click)="toggleTextPassword()" class="toggle-button">{{toggle}}</ion-icon>
@@ -39,7 +38,6 @@
   </ion-grid>
   <!-- <ion-input type="text" style="color: white;" placeholder="Contact No.*" required></ion-input>
       <hr style="background-color: #009088; width: 100%;"> -->
-  <br><button type="submit"  (click)="gotoLogin()"  ion-button class="button-format">REGISTER</button>
+  <br><button ion-button  (click)="gotoLogin()"  ion-button class="button-format">REGISTER</button>
 <ion-label class="label-format-1">Already have an account? Login</ion-label>
-</form>
 </ion-content>

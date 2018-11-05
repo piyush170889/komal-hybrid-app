@@ -14,16 +14,16 @@
 
 
       <ion-item>
-        <ion-input type="text" placeholder="Contact No"></ion-input>
+        <ion-input class="white-color" [(ngModel)]="username" type="text" placeholder="Contact No"></ion-input>
       </ion-item>
     
       <ion-item>
-        <ion-input type="password" placeholder="Password"></ion-input>
+        <ion-input class="white-color" [(ngModel)]="password" type="password" placeholder="Password"></ion-input>
       </ion-item>
     
       <div class="fp" (click)="openSendOtp()">Forget Password?</div>
       <div class="log">
-        <button (click)="gotoHomeScreen()" ion-button block>Login</button>
+        <button (click)="login()" ion-button block>Login</button>
       </div>
       <div class="skip">
         <button (click)="gotoHomeScreen()" ion-button skip block>Skip Login</button>

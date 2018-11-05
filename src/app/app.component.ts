@@ -3,8 +3,6 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { ContactusPage } from '../pages/contactus/contactus';
 import { OrdersPage } from '../pages/orders/orders';
@@ -16,20 +14,34 @@ import { HomeScreenPage } from '../pages/home-screen/home-screen';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = HomeScreenPage;
 
   pages: Array<{title: string, component: any}>;
+
+  userDetails : any={};
+  pageName : {title: string, component: any};
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
+    let key = 'userDetails';
+    this.userDetails =  localStorage.getItem(key);
+    // if(this.userDetails != null)
+    // {
+    //   this.pageName =  { title: 'Logout', component: LoginPage };
+    // }else{
+    //   this.pageName =  { title: 'Login', component: LoginPage };
+
+    // }
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomeScreenPage },
       { title: 'Contact Us', component: ContactusPage },
       { title: 'Track Order', component: OrdersPage },
       { title: 'Feedback', component: OrdersPage },
+      { title: 'Login', component: LoginPage },
       { title: 'Logout', component: LoginPage }
+      // this.pageName
     ];
 
   }

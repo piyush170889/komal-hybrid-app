@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Orders</ion-title>
   </ion-navbar>
 
@@ -14,21 +14,21 @@
 
 
 <ion-content padding>
-<div class="order-info">
-<div>Order Id: <div class="o-id">260</div></div>
-<div>Placed On 2018-10-15</div>
-</div>
+<div class="order-info" *ngFor="let order of orderList">
+<div class="rp-underline-title">Order Id: <div class="o-id">{{order.cartDtlsId}}</div></div>
+<div class="rp-underline-title">Placed On {{order.orderDate}}</div>
+
 <ion-card (click)="gotoOrders()">
     <ion-card-content>
         <ion-grid>
           <ion-row>
               <ion-col col-8>
                 <ion-chip>
-                  <ion-label>Pending</ion-label>
+                  <ion-label>{{order.cartStatus}}</ion-label>
                 </ion-chip>
               </ion-col>
               <ion-col col-4>
-                <div class="o-details">Details</div>
+                <!-- <div class="o-details">Details</div> -->
               </ion-col>
           </ion-row>
           <ion-row>
@@ -45,7 +45,7 @@
                   Address:
               </ion-col>
               <ion-col col-7>
-                  Deccan Gymkhana
+                  {{order.stAddress1}}
               </ion-col>  
             </ion-row>
 
@@ -53,7 +53,7 @@
                 <ion-col col-5>
                 </ion-col>
                 <ion-col col-7>
-                  Pune- 411041
+                    {{order.city}}-{{order.postalCode}}
                 </ion-col>  
               </ion-row>
 
@@ -61,7 +61,7 @@
                   <ion-col col-5>
                   </ion-col>
                   <ion-col col-7>
-                    Maharashtra
+                      {{order.state}}
                   </ion-col>  
                 </ion-row>
   
@@ -69,114 +69,6 @@
 
     </ion-card-content>
   </ion-card>
-  <div class="order-info">
-      <div>Order Id: <div class="o-id">260</div></div>
-      <div>Placed On 2018-10-15</div>
-      </div>
-      <ion-card>
-          <ion-card-content>
-              <ion-grid>
-                <ion-row>
-                    <ion-col col-8>
-                      <ion-chip>
-                        <ion-label>Pending</ion-label>
-                      </ion-chip>
-                    </ion-col>
-                    <ion-col col-4>
-                      <div class="o-details">Details</div>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col col-5>
-                      Delivery Date:
-                  </ion-col>
-                  <ion-col col-7>
-                      NA
-                  </ion-col>  
-                </ion-row>
-      
-                <ion-row>
-                    <ion-col col-5>
-                        Address:
-                    </ion-col>
-                    <ion-col col-7>
-                        Deccan Gymkhana
-                    </ion-col>  
-                  </ion-row>
-      
-                  <ion-row>
-                      <ion-col col-5>
-                      </ion-col>
-                      <ion-col col-7>
-                        Pune- 411041
-                      </ion-col>  
-                    </ion-row>
-      
-                    <ion-row>
-                        <ion-col col-5>
-                        </ion-col>
-                        <ion-col col-7>
-                          Maharashtra
-                        </ion-col>  
-                      </ion-row>
-        
-            </ion-grid>
-      
-          </ion-card-content>
-        </ion-card>
-        <div class="order-info">
-            <div>Order Id: <div class="o-id">260</div></div>
-            <div>Placed On 2018-10-15</div>
-            </div>
-            <ion-card>
-                <ion-card-content>
-                    <ion-grid>
-                      <ion-row>
-                          <ion-col col-8>
-                            <ion-chip>
-                              <ion-label>Pending</ion-label>
-                            </ion-chip>
-                          </ion-col>
-                          <ion-col col-4>
-                            <div class="o-details">Details</div>
-                          </ion-col>
-                      </ion-row>
-                      <ion-row>
-                        <ion-col col-5>
-                            Delivery Date:
-                        </ion-col>
-                        <ion-col col-7>
-                            NA
-                        </ion-col>  
-                      </ion-row>
-            
-                      <ion-row>
-                          <ion-col col-5>
-                              Address:
-                          </ion-col>
-                          <ion-col col-7>
-                              Deccan Gymkhana
-                          </ion-col>  
-                        </ion-row>
-            
-                        <ion-row>
-                            <ion-col col-5>
-                            </ion-col>
-                            <ion-col col-7>
-                              Pune- 411041
-                            </ion-col>  
-                          </ion-row>
-            
-                          <ion-row>
-                              <ion-col col-5>
-                              </ion-col>
-                              <ion-col col-7>
-                                Maharashtra
-                              </ion-col>  
-                            </ion-row>
-              
-                  </ion-grid>
-            
-                </ion-card-content>
-              </ion-card>
+</div>
+ 
 </ion-content>
