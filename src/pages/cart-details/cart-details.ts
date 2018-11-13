@@ -16,15 +16,17 @@ import { CartProductsReviewPage } from '../cart-products-review/cart-products-re
 })
 export class CartDetailsPage {
 
-  selectedValue=60;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  selectedValue = 60;
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartDetailsPage');
   }
 
-  openReviewProductPage(){
+  openReviewProductPage() {
     this.navCtrl.push(CartProductsReviewPage);
   }
 }

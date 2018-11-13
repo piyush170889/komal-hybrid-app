@@ -12,6 +12,7 @@
     <ion-buttons end>
       <button (click)="gotoCarts()" ion-button clear>
           <ion-icon color="light" ios="ios-cart" md="md-cart"></ion-icon>
+          <ion-badge *ngIf="cartItemSize != 0">{{cartItemSize}}</ion-badge>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -19,7 +20,8 @@
 
 <ion-content padding>
 <ion-row>
-  <img height="250px" width="500px" src ="https://i.ytimg.com/vi/_5zDlwIu7DM/maxresdefault.jpg">
+  <img height="250px" width="500px" src ="http://komalsteel.com/img/home/slider/imgone.jpg">
+  <!--<img height="250px" width="500px" src ="https://i.ytimg.com/vi/_5zDlwIu7DM/maxresdefault.jpg">-->
 </ion-row>
 
 <ion-item>
@@ -38,7 +40,7 @@
 </ion-row>
 <ion-row>
   <ion-col col-6 *ngFor="let subCategory of subCategoryDetails">
-    <img (click)="opneProductDetails()" id="imags" src="{{subCategory.url}}">
+    <img (click)="opneProductDetails(subCategory)" id="imags" src="{{subCategory.url}}">
   </ion-col>
   
 </ion-row>

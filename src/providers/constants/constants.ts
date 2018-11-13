@@ -17,6 +17,9 @@ export class ConstantsProvider {
   public static URL_SEPARATOR = "/";
   public static URL_PARAM_PAGE_NO = "page-no=";
   public static API_ENDPOINT_OAUTH = "oauth/token";
+  public static REQ_PARAM_CMPNY_ID = "companyinfoid=56";
+  public static REQ_PARAM_CATEGORY_ID = "categoryid=";
+  public static REQ_PARAM_SUBCATEGORY_ID = "subcategoryid=";
 
   //API Endpoints
   public static API_ENDPOINT_HOMESCREEN = 'categoryandsubcategoryalldetails';
@@ -25,6 +28,7 @@ export class ConstantsProvider {
   public static API_ENDPOINT_SEND_OTP = "sendotp";
   public static API_ENDPOINT_VERIFY_OTP = "verifyotp";
   public static API_ENDPOINT_ORDER_LIST = "cartdetails";
+  public static API_ENDPOINT_SUBCATEGORY_PRODUCT = "mproductdetails";
 
 
   //Master Data JSON key names

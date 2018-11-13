@@ -324,5 +324,37 @@ export class CommonUtilityProvider {
         return areaListByCityId;
     }
 
+    getCartItemSize() {
 
+        let cartDetails = this.getCartDetails();
+        let cartDetailsKeys: string[] = Object.keys(cartDetails);
+        let cartItemSize = Number.parseInt("0");
+
+        cartDetailsKeys.forEach(
+            (key) => {
+                let itemList: any = [];
+                itemList = cartDetails[key];
+                itemList.forEach(
+                    (item) => {
+                        cartItemSize = cartItemSize + Number.parseInt(item.selectedQty.toString());
+                        console.log('cartItemSize = ' + cartItemSize);
+                    }
+                )
+            }
+        );
+
+        return cartItemSize;
+    }
+
+    getCartDetails() {
+        let cartDetailsString: any = localStorage.getItem('cartDetails');
+        let cartDetails: any = {};
+
+        if (null != cartDetailsString && cartDetailsString != undefined
+            && cartDetailsString != '' && cartDetailsString != 'undefined') {
+            cartDetails = JSON.parse(cartDetailsString);
+        }
+
+        return cartDetails;
+    }
 }

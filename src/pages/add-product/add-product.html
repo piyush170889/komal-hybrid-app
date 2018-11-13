@@ -2,10 +2,11 @@
 
   <ion-navbar>
     <ion-title>Product Details</ion-title>
-    
+
     <ion-buttons end>
       <button (click)="gotoCarts()" ion-button clear>
           <ion-icon color="primary" ios="ios-cart" md="md-cart"></ion-icon>
+          <ion-badge *ngIf="cartItemSize != 0">{{cartItemSize}}</ion-badge>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -13,137 +14,68 @@
 
 
 <ion-content padding>
-<ion-card>
-  <ion-card-header>
-    <p class="label-format-c"><b>Red Cap Oil Can</b></p>
-  </ion-card-header>
-</ion-card>
+  <ion-card>
+    <ion-card-header>
+      <p class="label-format-c"><b>{{name}}</b></p>
+    </ion-card-header>
+  </ion-card>
 
 
-<ion-card>
-  <ion-card-header>
-    <p class="color-g"><b>Packaging Info</b></p>
-  </ion-card-header>
-<ion-card-content>
-<ion-grid class="border">
-  <ion-row class="border-bottom">
-    <ion-col col-2 class="border-right">
-      No.
-    </ion-col>
-    <ion-col col-4 class="border-right">
-      Product
-    </ion-col>
-    <ion-col col-2 class="border-right">
-      Type
-    </ion-col>
-    <ion-col col-4>
-      Qty
-    </ion-col>
-  </ion-row>
-  <ion-row class="border-bottom">
-    <ion-col col-2 class="border-right">
-      1
-    </ion-col>
-    <ion-col col-4 class="border-right">
-      Red Cap Oil Can
-    </ion-col>
-    <ion-col col-2 class="border-right">
-      450 ml
-    </ion-col>
-    <ion-col col-4>
-      <ion-select [(ngModel)]="selectedValue">
-        <ion-option value="50">50</ion-option>
-        <ion-option value="60">60</ion-option>
-        <ion-option value="70">70</ion-option>
-        <ion-option value="80">80</ion-option>
-        <ion-option value="90">90</ion-option>
-        <ion-option value="100">100</ion-option>
-      </ion-select>
-    </ion-col>
-  </ion-row>
-
-  <ion-row class="border-bottom">
-      <ion-col col-2 class="border-right">
-        2
-      </ion-col>
-      <ion-col col-4 class="border-right">
-        Red Cap Oil Can
-      </ion-col>
-      <ion-col col-2 class="border-right">
-        550 ml
-      </ion-col>
-      <ion-col col-4>
-        <ion-select [(ngModel)]="selectedValue">
-          <ion-option value="50">50</ion-option>
-          <ion-option value="60">60</ion-option>
-          <ion-option value="70">70</ion-option>
-          <ion-option value="80">80</ion-option>
-          <ion-option value="90">90</ion-option>
-          <ion-option value="100">100</ion-option>
-        </ion-select>
-      </ion-col>
-    </ion-row>
-
-    <ion-row class="border-bottom">
-        <ion-col col-2 class="border-right">
-          3
-        </ion-col>
-        <ion-col col-4 class="border-right">
-          Red Cap Oil Can
-        </ion-col>
-        <ion-col col-2 class="border-right">
-          750 ml
-        </ion-col>
-        <ion-col col-4>
-          <ion-select [(ngModel)]="selectedValue">
-            <ion-option value="50">50</ion-option>
-            <ion-option value="60">60</ion-option>
-            <ion-option value="70">70</ion-option>
-            <ion-option value="80">80</ion-option>
-            <ion-option value="90">90</ion-option>
-            <ion-option value="100">100</ion-option>
-          </ion-select>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
+  <ion-card>
+    <ion-card-header>
+      <p class="color-g"><b>Packaging Info</b></p>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid class="border">
+        <ion-row class="border-bottom">
           <ion-col col-2 class="border-right">
-            4
+            No.
           </ion-col>
           <ion-col col-4 class="border-right">
-            Red Cap Oil Can
+            Product
           </ion-col>
           <ion-col col-2 class="border-right">
-            1000 ml
+            Type
           </ion-col>
           <ion-col col-4>
-            <ion-select [(ngModel)]="selectedValue">
-              <ion-option value="50">50</ion-option>
-              <ion-option value="60">60</ion-option>
-              <ion-option value="70">70</ion-option>
-              <ion-option value="80">80</ion-option>
-              <ion-option value="90">90</ion-option>
-              <ion-option value="100">100</ion-option>
+            Qty
+          </ion-col>
+        </ion-row>
+        <ion-row class="border-bottom" *ngFor="let productDetails of productDetailsList">
+          <ion-col col-2 class="border-right">
+            {{productDetails.itemNo}}
+          </ion-col>
+          <ion-col col-4 class="border-right">
+            {{productDetails.itemNm}}
+          </ion-col>
+          <ion-col col-2 class="border-right">
+            {{productDetails.uom}}
+          </ion-col>
+          <ion-col col-4>
+            <ion-select [(ngModel)]="productDetails.selectedQty">
+              <ion-option *ngFor="let itemQty of productDetails.itemQtyArray" value="{{itemQty}}">{{itemQty}}</ion-option>
+              <!--<ion-option>10</ion-option>-->
             </ion-select>
           </ion-col>
         </ion-row>
-</ion-grid>
-</ion-card-content>
-</ion-card>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar>
-        <ion-grid>
-         <ion-row>
-           <ion-col col-12>
-              <button (click)="presentToast()" ion-button class="button-format"> 
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <button (click)="addItemToCart()" ion-button class="button-format"> 
                   Add To Cart
                 </button>
-           </ion-col>
-         </ion-row> 
-        </ion-grid>
-      
-    </ion-toolbar>
-  </ion-footer>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-toolbar>
+</ion-footer>
