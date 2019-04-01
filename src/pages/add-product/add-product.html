@@ -1,12 +1,13 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="navcol">
+     
     <ion-title>Product Details</ion-title>
 
     <ion-buttons end>
       <button (click)="gotoCarts()" ion-button clear>
-          <ion-icon color="primary" ios="ios-cart" md="md-cart"></ion-icon>
-          <ion-badge *ngIf="cartItemSize != 0">{{cartItemSize}}</ion-badge>
+          <ion-icon color="plain" ios="ios-cart" md="md-cart"></ion-icon>
+          <ion-badge color="danger" *ngIf="cartItemSize != 0">{{cartItemSize}}</ion-badge>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -16,44 +17,44 @@
 <ion-content padding>
   <ion-card>
     <ion-card-header>
-      <p class="label-format-c"><b>{{name}}</b></p>
+      <p class="label-format-c font-sz"><b>{{name}}</b></p>
     </ion-card-header>
   </ion-card>
 
 
   <ion-card>
     <ion-card-header>
-      <p class="color-g"><b>Packaging Info</b></p>
+      <p class="color-g font-sz"><b>Packaging Info</b></p>
     </ion-card-header>
     <ion-card-content>
       <ion-grid class="border">
         <ion-row class="border-bottom">
           <ion-col col-2 class="border-right">
-            No.
+          <p class=" font-sz">No.</p>
           </ion-col>
           <ion-col col-4 class="border-right">
-            Product
+              <p class="font-sz">Product</p>
           </ion-col>
           <ion-col col-2 class="border-right">
-            Type
+              <p class="font-sz">Type</p>
           </ion-col>
           <ion-col col-4>
-            Qty
+              <p class="font-sz">Qty</p>
           </ion-col>
         </ion-row>
         <ion-row class="border-bottom" *ngFor="let productDetails of productDetailsList">
           <ion-col col-2 class="border-right">
-            {{productDetails.itemNo}}
+              <p class="font-sz">{{productDetails.itemNo}}</p>
           </ion-col>
           <ion-col col-4 class="border-right">
-            {{productDetails.itemNm}}
+              <p class="font-sz"> {{productDetails.itemNm}}</p>
           </ion-col>
           <ion-col col-2 class="border-right">
-            {{productDetails.uom}}
+              <p class="font-sz"> {{productDetails.uom}}</p>
           </ion-col>
           <ion-col col-4>
-            <ion-select [(ngModel)]="productDetails.selectedQty">
-              <ion-option *ngFor="let itemQty of productDetails.itemQtyArray" value="{{itemQty}}">{{itemQty}}</ion-option>
+            <ion-select class="font-sz" style="max-width:100%;" [(ngModel)]="productDetails.selectedQty" placeholder="0">
+              <ion-option  *ngFor="let itemQty of productDetails.itemQtyArray" value="{{itemQty}}">{{itemQty}}</ion-option>
               <!--<ion-option>10</ion-option>-->
             </ion-select>
           </ion-col>

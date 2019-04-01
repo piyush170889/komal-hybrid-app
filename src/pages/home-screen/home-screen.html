@@ -6,13 +6,19 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>Komal Trading Corporation</ion-title>
+  <ion-navbar color="navcol">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+   </button>
+    <div  class="nav-title">
+        
+      <ion-title>Komal Trading Corporation</ion-title>
+    </div>
     
     <ion-buttons end>
       <button (click)="gotoCarts()" ion-button clear>
           <ion-icon color="light" ios="ios-cart" md="md-cart"></ion-icon>
-          <ion-badge *ngIf="cartItemSize != 0">{{cartItemSize}}</ion-badge>
+          <ion-badge color="danger" *ngIf="cartItemSize != 0">{{cartItemSize}}</ion-badge>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -20,13 +26,13 @@
 
 <ion-content padding>
 <ion-row>
-  <img height="250px" width="500px" src ="http://komalsteel.com/img/home/slider/imgone.jpg">
+  <img class="image-he" src ="http://komalsteel.com/img/home/slider/imgone.jpg">
   <!--<img height="250px" width="500px" src ="https://i.ytimg.com/vi/_5zDlwIu7DM/maxresdefault.jpg">-->
 </ion-row>
 
 <ion-item>
-  <ion-label><strong>Select category</strong> </ion-label>
-  <ion-select #C (ionChange)="changeSubCategory(C.value)" [(ngModel)]="categoryId" >
+  <!-- <ion-label><strong>Select category</strong> </ion-label> -->
+  <ion-select style="width:100% !important; max-width: 100%;" #C (ionChange)="changeSubCategory(C.value)" [(ngModel)]="categoryId" >
   <ion-option *ngFor="let category of categoryDetailsArray" value="{{category.id}}" selected>{{category.name}}</ion-option>
   </ion-select>
 </ion-item>
@@ -34,7 +40,7 @@
 
 <ion-grid id="imagelist">
   <ion-row>
-    <ion-col col-12>
+    <ion-col col-12 style="padding-right: 0">
       <ion-label class="cat-name-label">{{categoryName}}</ion-label>
     </ion-col>
 </ion-row>

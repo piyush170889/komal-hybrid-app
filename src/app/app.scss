@@ -23,7 +23,8 @@ $colors: (
   dark:       #222,
   plain:      #fff,
   navbar:    #ee7e2d,
-  semidark: #5d5d5d
+  semidark: #5d5d5d,
+  navcol: #009088,
 );
 
 .background-color{
@@ -108,4 +109,7 @@ $colors: (
   border-bottom: 1px solid color($colors, primary, base) !important;
   padding: 0;
   margin: 1.5rem 0 0 !important;
+}
+.toolbar-title{
+  font-size: 16px !important;
 }

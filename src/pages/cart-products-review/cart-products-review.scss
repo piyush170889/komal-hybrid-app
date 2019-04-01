@@ -6,13 +6,24 @@ page-cart-products-review {
 
     .address-label{
         font-size: 11px;
+        margin: 0 auto !important;
     }
     .address-label-a{
         font-size: 11px;
-         margin-top:-10px;
+         margin-top: -10px;
     }
 
     .border{
         border: 1px solid #009088;
-        }
+
+    }
+
+    .card-md{
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .label-mar{
+        margin: 0 auto !important;
+    }
 }
