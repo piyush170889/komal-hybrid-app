@@ -27,6 +27,9 @@ import { ConstantsProvider } from '../providers/constants/constants';
 import { CommonUtilityProvider } from '../providers/common-utility/common-utility';
 import { Network } from '@ionic-native/network';
 import { HttpClientModule } from '@angular/common/http';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { FeedbackPage } from '../pages/feedback/feedback';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginPage,
     OrderPage,
     OrdersPage,
-    AddProductPage
+    AddProductPage,
+    FeedbackPage
 
   ],
   imports: [
@@ -72,7 +76,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginPage,
     OrderPage,
     OrdersPage,
-    AddProductPage
+    AddProductPage,
+    FeedbackPage
 
   ],
   providers: [
@@ -82,7 +87,8 @@ import { HttpClientModule } from '@angular/common/http';
     RestserviceProvider,
     ConstantsProvider,
     CommonUtilityProvider,
-    Network
+    Network,
+    EmailComposer
   ]
 })
 export class AppModule {}

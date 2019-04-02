@@ -7,6 +7,7 @@ import { LoginPage } from '../pages/login/login';
 import { ContactusPage } from '../pages/contactus/contactus';
 import { OrdersPage } from '../pages/orders/orders';
 import { HomeScreenPage } from '../pages/home-screen/home-screen';
+import { FeedbackPage } from '../pages/feedback/feedback';
 
 @Component({
   templateUrl: 'app.html'
@@ -38,7 +39,7 @@ export class MyApp {
       { title: 'Home', component: HomeScreenPage },
       { title: 'Contact Us', component: ContactusPage },
       { title: 'Track Order', component: OrdersPage },
-      { title: 'Feedback', component: OrdersPage },
+      { title: 'Feedback', component: FeedbackPage },
       { title: 'Login', component: LoginPage },
       { title: 'Logout', component: LoginPage }
       // this.pageName
