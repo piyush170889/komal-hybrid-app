@@ -7,60 +7,65 @@
 <ion-header>
 
   <ion-navbar color="navcol">
-      <button ion-button menuToggle>
-          <ion-icon style="color: #fff" name="menu"></ion-icon>
-   </button>
-    <ion-title>Orders</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon style="color: #fff" name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>Orders</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-<div class="order-info" *ngFor="let order of orderList">
-<!-- <div class="rp-underline-title">Order Id: <div class="o-id" color="navcol">{{order.cartDtlsId}}</div></div>
+<ion-content no-padding>
+  <div class="order-info" *ngFor="let order of orderList">
+    <!-- <div class="rp-underline-title">Order Id: <div class="o-id" color="navcol">{{order.cartDtlsId}}</div></div>
 <div class="rp-underline-title" color="navcol">Placed On {{order.orderDate}}</div> -->
 
-<ion-card (click)="gotoOrders()">
-    <ion-card-content>
+    <ion-card (click)="gotoOrders(order)">
+      <ion-card-content>
         <ion-grid>
           <ion-row>
-              
+
           </ion-row>
           <ion-row>
-              <ion-col col-8>
-                  <div class="font-sz"><b>Order Id: </b><div class="o-id" color="navcol">{{order.cartDtlsId}} <br> </div></div>
-                  <div class="font-sz" ><b>Placed On</b> <p color="navcol" style="font-size: 11px; color: #009088">{{order.orderDate}}</p></div>
-              </ion-col>
-              <ion-col col-4>
-                  <ion-chip>
-                    <ion-label  class="font-sz">{{order.cartStatus}}</ion-label>
-                    </ion-chip>
-              </ion-col>
+            <ion-col col-8>
+              Order No: <span class="o-id" color="navcol">{{order.cartDtlsId}} </span>
+            </ion-col>
+            <ion-col col-4>
+              <p color="navcol" style="font-size: 11px; color: #009088">{{order.orderDate | date: 'dd MMM yy'}}</p>
+            </ion-col>
           </ion-row>
           <ion-row>
+            <ion-col col-6>
+              Rs. {{order.cartPrice}}
+            </ion-col>
+            <ion-col col-6>
+              <span text-center style="float:right;padding:5% 20%;font-size:10px;background-color:#009088; border-radius:16px; color:#fff;">{{order.cartStatus}}</span>
+            </ion-col>
+          </ion-row>
+          <!-- <ion-row>
             <ion-col col-5>
-                <p  class="font-sz"><b>Delivery Date:</b> </p>
+              <p class="font-sz"><b>Delivery Date:</b> </p>
             </ion-col>
             <ion-col col-7>
-                <p color="navcol" style="font-size: 11px;">NA</p>  
-            </ion-col>  
-          </ion-row>
+              <p color="navcol" style="font-size: 11px;">NA</p>
+            </ion-col>
+          </ion-row> -->
 
           <ion-row>
-              <ion-col col-12>
-                  <b  class="font-sz">Address:</b>
-              </ion-col>
-              <ion-col col-12>
-                <div class="font-sz">
-                  {{order.stAddress1}}, {{order.city}}-{{order.postalCode}},  {{order.state}}
-                </div>
-              </ion-col>  
-            </ion-row>
-      </ion-grid>
+            <ion-col col-12>
+              <strong>Address:</strong>
+            </ion-col>
+            <ion-col col-12>
+              <div class="font-sz">
+                {{order.stAddress1}}, {{order.city}}-{{order.postalCode}}, {{order.state}}
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
 
-    </ion-card-content>
-  </ion-card>
-</div>
- 
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>

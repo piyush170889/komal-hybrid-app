@@ -35,14 +35,13 @@ export class HomeScreenPage {
   ) {
 
     // localStorage.clear();
-    this.cartItemSize = this.commonUtility.getCartItemSize();
     console.log('this.cartItemSize = ' + this.cartItemSize);
 
     let homeScreenUrl = ConstantsProvider.API_BASE_URL + ConstantsProvider.API_ENDPOINT_HOMESCREEN;
-    restService.getDetails(homeScreenUrl).subscribe((res) => {
+    this.restService.getDetails(homeScreenUrl).subscribe((res) => {
 
       this.homescreenDetails = res.categoryAndSubCatDetails;
-      console.log('HomeScreen Response : ' + JSON.stringify(this.homescreenDetails));
+      console.log('Response : ' + JSON.stringify(this.homescreenDetails));
 
 
       for (let i = 0; i < this.homescreenDetails.length; i++) {
@@ -60,6 +59,12 @@ export class HomeScreenPage {
       }
     });
 
+  }
+
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter HomeScreenPage');
+    this.cartItemSize = this.commonUtility.getCartItemSize();
+    console.log('this.cartItemSize = ' + this.cartItemSize);
   }
 
   changeSubCategory(categoryId) {

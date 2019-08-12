@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { OrderPage } from '../order/order';
 import { RestserviceProvider } from '../../providers/restservice/restservice';
 import { CommonUtilityProvider } from '../../providers/common-utility/common-utility';
@@ -19,30 +19,46 @@ import { ConstantsProvider } from '../../providers/constants/constants';
 })
 export class OrdersPage {
 
-  // userDetails:any={};
-  trackId:string = '9cb54a49-75d1-11e7-8dd0-525400f54f71';
-  orderList:any=[];
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public restService:RestserviceProvider,
-    public commonUtility: CommonUtilityProvider) {
-  //  this.userDetails = localStorage.getItem('userDetails');
-  //  console.log('loggedInUserDetails : '+JSON.stringify(this.userDetails));
-      let orderListUrl = ConstantsProvider.API_BASE_URL + ConstantsProvider.API_ENDPOINT_ORDER_LIST + ConstantsProvider.URL_SEPARATOR 
-      + this.trackId + ConstantsProvider.URL_SEPARATOR + ConstantsProvider.pageNum;
-
-      restService.getDetails(orderListUrl).subscribe(res=>{
-        this.orderList = res.request;
-        console.log('Order List : '+JSON.stringify(this.orderList));
-      });
+  trackId: string = '';
+  orderList: any = [];
 
 
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public restService: RestserviceProvider,
+    public commonUtility: CommonUtilityProvider,
+    public events: Events
+  ) {
+
+    this.trackId = localStorage.getItem(ConstantsProvider.LOCAL_STRG_USR_DTLS_ID);
+    console.log('loggedInUserDetails ID : ' + this.trackId);
+
+    setTimeout(
+      () => {
+        if (this.trackId == null || this.trackId == '') {
+          events.publish(ConstantsProvider.EVENTS_UNAUTHORISED_USER);
+        } else {
+          let orderListUrl = ConstantsProvider.API_BASE_URL + ConstantsProvider.API_ENDPOINT_ORDER_LIST
+            + ConstantsProvider.URL_SEPARATOR + this.trackId + ConstantsProvider.URL_SEPARATOR
+            + ConstantsProvider.pageNum;
+
+          restService.getDetails(orderListUrl).subscribe(res => {
+            this.orderList = res.request;
+            console.log('Order List : ' + JSON.stringify(this.orderList));
+          });
+        }
+      }, 1000
+    )
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrdersPage');
   }
 
-  gotoOrders(){
-    this.navCtrl.push(OrderPage);
+  gotoOrders(order: any) {
+    this.navCtrl.push(OrderPage, {
+      order: order
+    });
   }
 }

@@ -7,48 +7,49 @@
 <ion-header>
 
   <ion-navbar color="navcol">
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-   </button>
-    <div  class="nav-title">
-        
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <div class="nav-title">
+
       <ion-title>Komal Trading Corporation</ion-title>
     </div>
-    
+
     <ion-buttons end>
       <button (click)="gotoCarts()" ion-button clear>
-          <ion-icon color="light" ios="ios-cart" md="md-cart"></ion-icon>
-          <ion-badge color="danger" *ngIf="cartItemSize != 0">{{cartItemSize}}</ion-badge>
+        <ion-icon color="light" ios="ios-cart" md="md-cart"></ion-icon>
+        <ion-badge color="danger" *ngIf="cartItemSize != 0">{{cartItemSize}}</ion-badge>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-<ion-row>
-  <img class="image-he" src ="http://komalsteel.com/img/home/slider/imgone.jpg">
-  <!--<img height="250px" width="500px" src ="https://i.ytimg.com/vi/_5zDlwIu7DM/maxresdefault.jpg">-->
-</ion-row>
-
-<ion-item>
-  <!-- <ion-label><strong>Select category</strong> </ion-label> -->
-  <ion-select style="width:100% !important; max-width: 100%;" #C (ionChange)="changeSubCategory(C.value)" [(ngModel)]="categoryId" >
-  <ion-option *ngFor="let category of categoryDetailsArray" value="{{category.id}}" selected>{{category.name}}</ion-option>
-  </ion-select>
-</ion-item>
-
-
-<ion-grid id="imagelist">
   <ion-row>
-    <ion-col col-12 style="padding-right: 0">
-      <ion-label class="cat-name-label">{{categoryName}}</ion-label>
-    </ion-col>
-</ion-row>
-<ion-row>
-  <ion-col col-6 *ngFor="let subCategory of subCategoryDetails">
-    <img (click)="opneProductDetails(subCategory)" id="imags" src="{{subCategory.url}}">
-  </ion-col>
-  
-</ion-row>
-</ion-grid>
+    <img class="image-he" src="http://komalsteel.com/img/home/slider/imgone.jpg">
+    <!--<img height="250px" width="500px" src ="https://i.ytimg.com/vi/_5zDlwIu7DM/maxresdefault.jpg">-->
+  </ion-row>
+
+  <ion-item>
+    <!-- <ion-label><strong>Select category</strong> </ion-label> -->
+    <ion-select style="width:100% !important; max-width: 100%;" #C (ionChange)="changeSubCategory(C.value)" [(ngModel)]="categoryId">
+      <ion-option *ngFor="let category of categoryDetailsArray" value="{{category.id}}" selected>{{category.name}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+
+  <ion-grid id="imagelist">
+    <ion-row>
+      <ion-col col-12 style="padding-right: 0">
+        <ion-label class="cat-name-label">{{categoryName}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 *ngFor="let subCategory of subCategoryDetails">
+        <p><img (click)="opneProductDetails(subCategory)" id="imags" src="{{subCategory.url}}"></p>
+        <p text-center>{{subCategory.name}}</p>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 </ion-content>

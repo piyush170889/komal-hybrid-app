@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -8,43 +8,40 @@ import { ContactusPage } from '../pages/contactus/contactus';
 import { OrdersPage } from '../pages/orders/orders';
 import { HomeScreenPage } from '../pages/home-screen/home-screen';
 import { FeedbackPage } from '../pages/feedback/feedback';
+import { ConstantsProvider } from '../providers/constants/constants';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+
   @ViewChild(Nav) nav: Nav;
-
   rootPage: any = HomeScreenPage;
+  pages: Array<{ title: string, component: any }>;
+  userDetails: any = {};
+  pageName: { title: string, component: any };
 
-  pages: Array<{title: string, component: any}>;
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    private events: Events
+  ) {
 
-  userDetails : any={};
-  pageName : {title: string, component: any};
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
-    let key = 'userDetails';
-    this.userDetails =  localStorage.getItem(key);
-    // if(this.userDetails != null)
-    // {
-    //   this.pageName =  { title: 'Logout', component: LoginPage };
-    // }else{
-    //   this.pageName =  { title: 'Login', component: LoginPage };
+    this.events.subscribe(ConstantsProvider.EVENTS_UNAUTHORISED_USER,
+      () => {
+        localStorage.clear();
+        this.getSideMenu();
+        this.nav.setRoot(LoginPage);
+      });
 
-    // }
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomeScreenPage },
-      { title: 'Contact Us', component: ContactusPage },
-      { title: 'Track Order', component: OrdersPage },
-      { title: 'Feedback', component: FeedbackPage },
-      { title: 'Login', component: LoginPage },
-      { title: 'Logout', component: LoginPage }
-      // this.pageName
-    ];
 
+    this.events.subscribe(ConstantsProvider.EVENTS_LOGIN_SUCCESS,
+      () => {
+        this.getSideMenu();
+      });
   }
 
   initializeApp() {
@@ -53,12 +50,47 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.getSideMenu();
     });
   }
 
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    let data: any = {};
+
+    if (page.title == 'Logout')
+      data.doClearLocalStorage = true;
+
+    this.nav.setRoot(page.component, data);
+  }
+
+  getSideMenu() {
+
+    this.userDetails = localStorage.getItem(ConstantsProvider.LOCAL_STRG_USR_DTLS);
+
+    setTimeout(
+      () => {
+        if (this.userDetails != null && this.userDetails != '') {
+          this.pages = [
+            { title: 'Home', component: HomeScreenPage },
+            { title: 'Track Order', component: OrdersPage },
+            { title: 'Feedback', component: FeedbackPage },
+            { title: 'Contact Us', component: ContactusPage },
+            { title: 'Logout', component: LoginPage }
+          ];
+        } else {
+          this.pages = [
+            { title: 'Home', component: HomeScreenPage },
+            { title: 'Feedback', component: FeedbackPage },
+            { title: 'Contact Us', component: ContactusPage },
+            { title: 'Login', component: LoginPage },
+          ];
+        }
+      },
+      1000
+    );
+
   }
 }

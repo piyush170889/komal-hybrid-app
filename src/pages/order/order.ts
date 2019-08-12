@@ -15,10 +15,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class OrderPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  
+  order: any = {};
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams
+  ) {
+
+    this.order = this.navParams.get('order');
+    console.log('this.order = ' + JSON.stringify(this.order));
   }
 
   ionViewDidLoad() {
+
+    console.log('ionViewDidLoad OrderPage');
   }
 }

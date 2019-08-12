@@ -50,39 +50,39 @@ export class AddProductPage {
 
     this.restService.getDetails(productDetailsListUrl)
       .subscribe(
-      (response) => {
-        console.log('response = ' + JSON.stringify(response));
-        this.productDetailsList = response.resposne;
-        console.log('productDetailsList = ' + JSON.stringify(this.productDetailsList));
-        let productDetailsListLength = this.productDetailsList.length;
+        (response) => {
+          console.log('response = ' + JSON.stringify(response));
+          this.productDetailsList = response.resposne;
+          console.log('productDetailsList = ' + JSON.stringify(this.productDetailsList));
+          let productDetailsListLength = this.productDetailsList.length;
 
-        for (let i = 0; i < productDetailsListLength; i++) {
-          let element = this.productDetailsList[i];
-          let masterCartonRange: any = element.masterCartonQtyRange.split('-');
-          let masterCartonStartRange: any = masterCartonRange[0];
-          let masterCartonEndRange: any = masterCartonRange[1];
-          let masterCartonIncVal: any = element.masterCartonQtyIncVal;
+          for (let i = 0; i < productDetailsListLength; i++) {
+            let element = this.productDetailsList[i];
+            let masterCartonRange: any = element.masterCartonQtyRange.split('-');
+            let masterCartonStartRange: any = masterCartonRange[0];
+            let masterCartonEndRange: any = masterCartonRange[1];
+            let masterCartonIncVal: any = element.masterCartonQtyIncVal;
 
-          let itemQtyArray: any = [];
-          let itemQtyVal = Number.parseInt(masterCartonStartRange.toString());
+            let itemQtyArray: any = [];
+            let itemQtyVal = Number.parseInt(masterCartonStartRange.toString());
 
-          while (itemQtyVal < masterCartonEndRange) {
-            itemQtyVal = itemQtyVal + Number.parseInt(masterCartonIncVal.toString());
-            if (!(itemQtyVal > masterCartonEndRange))
-              itemQtyArray.push(itemQtyVal);
+            while (itemQtyVal < masterCartonEndRange) {
+              itemQtyVal = itemQtyVal + Number.parseInt(masterCartonIncVal.toString());
+              if (!(itemQtyVal > masterCartonEndRange))
+                itemQtyArray.push(itemQtyVal);
+            }
+
+            // element['itemQtyArray'] = itemQtyArray;
+            // console.log('element = ' + JSON.stringify(element));
+            this.productDetailsList[i]['itemQtyArray'] = itemQtyArray;
+            this.productDetailsList[i]['selectedQty'] = '';
+
+            console.log('itemNm = ' + element.itemNm + '-' + element.uom
+              + ', masterCartonQtyRange = ' + element.masterCartonQtyRange +
+              ', masterCartonStartRange = ' + masterCartonStartRange + ', masterCartonEndRange = ' + masterCartonEndRange
+              + 'itemQtyArray = ' + JSON.stringify(this.productDetailsList[i].itemQtyArray));
           }
-
-          // element['itemQtyArray'] = itemQtyArray;
-          // console.log('element = ' + JSON.stringify(element));
-          this.productDetailsList[i]['itemQtyArray'] = itemQtyArray;
-          this.productDetailsList[i]['selectedQty'] = '';
-
-          console.log('itemNm = ' + element.itemNm + '-' + element.uom
-            + ', masterCartonQtyRange = ' + element.masterCartonQtyRange +
-            ', masterCartonStartRange = ' + masterCartonStartRange + ', masterCartonEndRange = ' + masterCartonEndRange
-            + 'itemQtyArray = ' + JSON.stringify(this.productDetailsList[i].itemQtyArray));
         }
-      }
       )
   }
 
@@ -92,15 +92,22 @@ export class AddProductPage {
     let cartDetails = this.commonUtility.getCartDetails();
 
     for (let i = 0; i < this.productDetailsList.length; i++) {
-      let productDetails = this.productDetailsList[i];
-      console.log('prodcut Id = ' + productDetails.itemMasterDtlsId + 'prodcut name = ' + productDetails.itemNm + '-' + productDetails.uom
-        + ', selectedQty = ' + productDetails.selectedQty)
 
-      if (null != productDetails.selectedQty && productDetails.selectedQty != undefined &&
-        productDetails.selectedQty != '' && productDetails.selectedQty != 'undefined') {
+      let productDetails = this.productDetailsList[i];
+
+      console.log('prodcut Id = ' + productDetails.itemMasterDtlsId
+        + ', product name = ' + productDetails.itemNm + '-' + productDetails.uom
+        + ', selectedQty = ' + productDetails.selectedQty);
+
+      let productDtlsSelectedQty: any = productDetails.selectedQty;
+
+      if (null != productDtlsSelectedQty && productDtlsSelectedQty != undefined &&
+        productDtlsSelectedQty != '' && productDtlsSelectedQty != 'undefined') {
+
         let searchKey = this.subcategoryid;
         let searchItemList: any = cartDetails[searchKey];
         let addItemInList: boolean = true;
+
         if (searchItemList != null && searchItemList != undefined) {
           console.log('Search Item = ' + JSON.stringify(searchItemList));
           let searchItemListLength = searchItemList.length;
@@ -119,14 +126,15 @@ export class AddProductPage {
           if (searchItemList == null || searchItemList == undefined)
             searchItemList = [];
 
+          productDetails['subCatName'] = this.name;
           searchItemList.push(productDetails);
         }
-        
+
         cartDetails[searchKey] = searchItemList;
       }
     }
 
-    localStorage.setItem('cartDetails', JSON.stringify(cartDetails));
+    localStorage.setItem(ConstantsProvider.LOCAL_STRG_CART_DETAILS, JSON.stringify(cartDetails));
     console.log('cartDetails = ' + JSON.stringify(cartDetails));
 
     this.navCtrl.setRoot(HomeScreenPage, {

@@ -183,7 +183,7 @@ export class CommonUtilityProvider {
 
     presentErrorToast(error: any) {
         const toast = this.toastCtrl.create({
-            message: 'Server Error Occured',
+            message: error,
             duration: 3000
         });
 
@@ -223,18 +223,18 @@ export class CommonUtilityProvider {
                 this.loading.present();
                 this.makeMAsterDatApiCall()
                     .subscribe(
-                    (response) => {
-                        this.loading.dismiss();
-                        let data: any = response;
-                        console.log('Master Data :- ' + JSON.stringify(data.data));
-                        alert('Master Data :- ' + JSON.stringify(data.data));
-                        this.setMasterDataInLocalStorage(data.data, '1');
-                    },
-                    (err) => {
-                        this.loading.dismiss();
-                        console.log("Error - " + JSON.stringify(err));
-                        this.presentErrorToast(err);
-                    }
+                        (response) => {
+                            this.loading.dismiss();
+                            let data: any = response;
+                            console.log('Master Data :- ' + JSON.stringify(data.data));
+                            alert('Master Data :- ' + JSON.stringify(data.data));
+                            this.setMasterDataInLocalStorage(data.data, '1');
+                        },
+                        (err) => {
+                            this.loading.dismiss();
+                            console.log("Error - " + JSON.stringify(err));
+                            this.presentErrorToast(err);
+                        }
                     );
             }
         }
@@ -271,13 +271,13 @@ export class CommonUtilityProvider {
     private refreshMasterData(groupName: string) {
         return this.makeMAsterDatApiCall()
             .subscribe(
-            (response) => {
-                let data: any = response;
-                console.log('Master Data :- ' + JSON.stringify(data.response));
-                this.setMasterDataInLocalStorage(data.response, '1');
-                console.log('Reached Here - 11');
-                return this.getMasterDataListByGroupName(groupName);
-            }
+                (response) => {
+                    let data: any = response;
+                    console.log('Master Data :- ' + JSON.stringify(data.response));
+                    this.setMasterDataInLocalStorage(data.response, '1');
+                    console.log('Reached Here - 11');
+                    return this.getMasterDataListByGroupName(groupName);
+                }
             );
     }
 
@@ -334,12 +334,14 @@ export class CommonUtilityProvider {
             (key) => {
                 let itemList: any = [];
                 itemList = cartDetails[key];
-                itemList.forEach(
-                    (item) => {
-                        cartItemSize = cartItemSize + Number.parseInt(item.selectedQty.toString());
-                        console.log('cartItemSize = ' + cartItemSize);
-                    }
-                )
+                if (null != itemList && itemList.length > 0) {
+                    itemList.forEach(
+                        (item) => {
+                            cartItemSize = cartItemSize + Number.parseInt(item.selectedQty.toString());
+                            console.log('cartItemSize = ' + cartItemSize);
+                        }
+                    );
+                }
             }
         );
 
@@ -347,14 +349,30 @@ export class CommonUtilityProvider {
     }
 
     getCartDetails() {
-        let cartDetailsString: any = localStorage.getItem('cartDetails');
+        let cartDetailsString: any = localStorage.getItem(ConstantsProvider.LOCAL_STRG_CART_DETAILS);
         let cartDetails: any = {};
 
         if (null != cartDetailsString && cartDetailsString != undefined
             && cartDetailsString != '' && cartDetailsString != 'undefined') {
+            console.log('Parsing CartDetails')
             cartDetails = JSON.parse(cartDetailsString);
         }
 
         return cartDetails;
     }
+
+    setCartDetails(cartDetails: any) {
+        localStorage.setItem(ConstantsProvider.LOCAL_STRG_CART_DETAILS, JSON.stringify(cartDetails));
+    }
+
+    getUserDetailsId(): string {
+
+        return localStorage.getItem(ConstantsProvider.LOCAL_STRG_USR_DTLS_ID);
+    }
+
+    getUserDetails(): string {
+
+        return localStorage.getItem(ConstantsProvider.LOCAL_STRG_USR_DTLS);
+    }
+
 }

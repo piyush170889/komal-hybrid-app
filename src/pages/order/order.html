@@ -7,26 +7,67 @@
 <ion-header>
 
   <ion-navbar color="navcol">
-    <ion-title>Order</ion-title>
+    <ion-title text-center>Order</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content no-padding>
   <ion-grid>
     <ion-row>
+
+    </ion-row>
+    <ion-row>
       <ion-col col-8>
-        <div class="font-sz">Order Id: <div class="o-id">260</div><br>Placed On <div class="o-id">2018-10-15</div>
-        </div>
+        Order No: <span class="o-id" color="navcol">{{order.cartDtlsId}} </span>
       </ion-col>
       <ion-col col-4>
-        <ion-chip class="status">
-          <ion-label>Pending</ion-label>
-        </ion-chip>
+        <p color="navcol" style="font-size: 11px; color: #009088">{{order.orderDate | date: 'dd MMM yy'}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        Rs. {{order.cartPrice}}
+      </ion-col>
+      <ion-col col-6>
+        <span text-center style="float:right;padding:5% 20%;font-size:10px;background-color:#009088; border-radius:16px; color:#fff;">{{order.cartStatus}}</span>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row>
+      <ion-col col-5>
+        <p class="font-sz"><b>Delivery Date:</b> </p>
+      </ion-col>
+      <ion-col col-7>
+        <p color="navcol" style="font-size: 11px;">NA</p>
+      </ion-col>
+    </ion-row> -->
+
+    <ion-row>
+      <ion-col col-12>
+        <strong>Address:</strong>
+      </ion-col>
+      <ion-col col-12>
+        <div class="font-sz">
+          {{order.stAddress1}}, {{order.city}}-{{order.postalCode}}, {{order.state}}
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <p class="font-sz">
+          Delivery Date
+        </p>
+      </ion-col>
+      <ion-col col-6>
+        <p class="font-sz">
+          {{order.actualDlvryDate == null || order.actualDlvryDate == '' ? 'NA' : (order.actualDlvryDate | date:
+          'dd MMM yy')}}
+        </p>
       </ion-col>
     </ion-row>
   </ion-grid>
+
   <ion-card>
     <ion-card-content>
       <ion-grid>
@@ -34,72 +75,76 @@
           <ion-col col-4 class="icn-first">
             <ion-icon name="checkmark-circle"></ion-icon>
           </ion-col>
-          <ion-col col-4 class="icn-middle">
+          <ion-col col-4 class="icn-middle" *ngIf="order.lrNo != '' && order.lrNoDate != ''">
             <ion-icon name="bus"></ion-icon>
           </ion-col>
-          <ion-col col-4 class="icn-last">
+          <ion-col col-4 class="icn-middle" *ngIf="order.lrNo == '' && order.lrNoDate == ''">
+            <ion-icon name="bus" style="color:#5d5d5d;"></ion-icon>
+          </ion-col>
+          <ion-col col-4 class="icn-last" *ngIf="order.cartStatus == 'Completed'">
             <ion-icon name="basket"></ion-icon>
           </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-5>
-            <p class="font-sz">
-              Delivery Date:
-            </p>
+          <ion-col col-4 class="icn-last" *ngIf="order.cartStatus != 'Completed'">
+            <ion-icon name="basket" style="color:#5d5d5d;"></ion-icon>
           </ion-col>
-          <ion-col col-7>
-            <p class="font-sz">
-              NA
-            </p>
+        </ion-row>
+
+        <ion-row style="border-bottom: 1px solid #cecece;">
+          <ion-col col-12 text-center>
+            <strong>
+              LR Information
+            </strong>
           </ion-col>
         </ion-row>
 
         <ion-row>
-          <ion-col>
-            <p class="font-sz">
-              LR Information:
-            </p>
+          <ion-col col-6 class="font-sz">
+            LR No.
+          </ion-col>
+          <ion-col col-6 class="font-sz">
+            {{order.lrNo == '' || order.lrNo == null ? 'Not Specified' : order.lrNo }}
           </ion-col>
         </ion-row>
+
         <ion-row>
-          <ion-col>
-              <p class="font-sz">
-                  LR No.:
-                </p>
-              </ion-col>
+          <ion-col col-6 class="font-sz">
+            LR Date
+          </ion-col>
+          <ion-col col-6 class="font-sz">
+            {{order.lrNoDate == '' || order.lrNoDate == null ? 'Not Specified' : (order.lrNoDate | date: 'dd MMM yy')
+            }}
+          </ion-col>
         </ion-row>
+
         <ion-row>
-          <ion-col>
-              <p class="font-sz">
-                  No of cartoon Loaded:
-                </p></ion-col>
+          <ion-col col-6 class="font-sz">
+            No. of cartoon Loaded
+          </ion-col>
+          <ion-col col-6 class="font-sz">
+            {{order.noOfCartonLoaded == '' || order.noOfCartonLoaded == null ? '0' : order.noOfCartonLoaded }}
+          </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col>
-              <p class="font-sz">
-                  Product Information:
-                </p></ion-col>
+
+        <ion-row style="margin-bottom:4%; border-bottom: 1px solid #cecece;">
+          <ion-col col-12 text-center>
+            <strong>
+              Order Items
+            </strong>
+          </ion-col>
         </ion-row>
+
         <ion-row>
           <ion-col col-4 class="tab font-sz">Product</ion-col>
           <ion-col col-4 class="tab font-sz">Type</ion-col>
           <ion-col col-4 class="tab font-sz">Qty</ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col col-4 class="tab font-sz">Red Cap Oil Can</ion-col>
-          <ion-col col-4 class="tab font-sz">450 ml</ion-col>
-          <ion-col col-4 class="tab font-sz">10</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <p class="font-sz"><b>Address:</b></p>
-          </ion-col>
-          <ion-col col-12>
-              <p class="font-sz">Deccan Gymkhana, Pune -411004, Maharashtra</p>  
-          </ion-col>
+        <ion-row *ngFor="let itemOrder of order.itemOrderDetailsList">
+          <ion-col col-4 class="tab font-sz">{{ itemOrder.itemName }}</ion-col>
+          <ion-col col-4 class="tab font-sz">{{ itemOrder.uom }}</ion-col>
+          <ion-col col-4 class="tab font-sz">{{ itemOrder.itemQty }}</ion-col>
         </ion-row>
 
-        
+
       </ion-grid>
 
     </ion-card-content>

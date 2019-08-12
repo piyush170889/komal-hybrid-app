@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { HomeScreenPage } from '../home-screen/home-screen';
 import { SendOtpPage } from '../send-otp/send-otp';
 import { ConstantsProvider } from '../../providers/constants/constants';
@@ -20,55 +20,79 @@ import { CommonUtilityProvider } from '../../providers/common-utility/common-uti
 })
 export class LoginPage {
 
-  username:string;
-  password:string;
-  data:any={};
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public restService:RestserviceProvider, public commonUtility: CommonUtilityProvider) {
+  username: string;
+  password: string;
+  data: any = {};
+  doClearLocalStorage: boolean = false;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public restService: RestserviceProvider,
+    public commonUtility: CommonUtilityProvider,
+    private events: Events
+  ) {
+
+    this.doClearLocalStorage = this.navParams.get('doClearLocalStorage');
+    if (this.doClearLocalStorage) {
+      localStorage.clear();
+      this.events.publish(ConstantsProvider.EVENTS_LOGIN_SUCCESS);
+    }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  gotoHomeScreen(){
-    this.navCtrl.push(HomeScreenPage);
+  gotoHomeScreen() {
+    this.navCtrl.setRoot(HomeScreenPage);
   }
 
-  login(){
+  login() {
 
-    if(this.username == null || this.username == '' || this.password == null || this.password == ''){
+    if (this.username == null || this.username == '' || this.password == null || this.password == '') {
       this.commonUtility.presentToast('Invalid Credentials. Please Enter Valid Credentials', 5000);
-    }else{
+    } else {
       this.data = {
         "request": {
-          "cmpnyInfoId":"56",
-          "loginId":this.username,
-          "password":this.password
+          "cmpnyInfoId": "56",
+          "loginId": this.username,
+          "password": this.password
         }
       }
+
       let loginUrl = ConstantsProvider.API_BASE_URL + ConstantsProvider.API_ENDPOINT_LOGIN;
-      this.restService.postDetails(loginUrl,this.data).subscribe( res=>{
-        console.log('UserDetails :'+JSON.stringify(res.userDetails));
-        if(res.responseMessage.status == 200){
-          localStorage.setItem('userDetails',res.userDetails);
-          this.navCtrl.push(HomeScreenPage);
-        }else{
-          this.commonUtility.presentToast('Invalid Credentials. Please Enter Valid Credentials', 5000);
-        }
-  
-  
-      });
+
+      this.restService.postDetails(loginUrl, this.data)
+        .subscribe(
+          res => {
+
+            console.log('UserDetails :' + JSON.stringify(res.userDetails));
+
+            if (res.responseMessage.status == 200) {
+
+              localStorage.setItem(ConstantsProvider.LOCAL_STRG_USR_DTLS, JSON.stringify(res.userDetails));
+              localStorage.setItem(ConstantsProvider.LOCAL_STRG_USR_DTLS_ID, res.userDetails.userTrackId);
+
+              this.commonUtility.presentToast('Logged In Successfully', 5000);
+              this.events.publish(ConstantsProvider.EVENTS_LOGIN_SUCCESS);
+
+              this.navCtrl.setRoot(HomeScreenPage);
+            } else {
+              this.commonUtility.presentToast('Invalid Credentials. Please Enter Valid Credentials', 5000);
+            }
+          }
+        );
     }
-    
+
 
   }
 
-  sendOtpRegister(){
+  sendOtpRegister() {
     this.navCtrl.push(SendOtpPage);
   }
 
-  openSendOtp(){
+  openSendOtp() {
     this.navCtrl.push(SendOtpPage);
   }
 

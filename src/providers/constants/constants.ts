@@ -11,7 +11,8 @@ import { Injectable } from '@angular/core';
 export class ConstantsProvider {
 
   //Common API Constants
-  public static API_BASE_URL: string = "http://132.148.151.28:8080/komal/";
+  public static API_BASE_URL: string = "http://localhost:82/basemodule/";
+  // public static API_BASE_URL: string = "http://132.148.151.28:8080/komal/";
   public static API_ENDPOINT_ACTIVATE_DEACTIVATE = "activate-deactivate";
   public static API_ENDPOINT_USERS = "users";
   public static URL_SEPARATOR = "/";
@@ -29,7 +30,7 @@ export class ConstantsProvider {
   public static API_ENDPOINT_VERIFY_OTP = "verifyotp";
   public static API_ENDPOINT_ORDER_LIST = "cartdetails";
   public static API_ENDPOINT_SUBCATEGORY_PRODUCT = "mproductdetails";
-
+  public static API_ENDPOINT_GST = "gst";
 
   //Master Data JSON key names
   public static API_ENDPOINT_MASTER_DATA = "ext/master";
@@ -45,6 +46,15 @@ export class ConstantsProvider {
   public static MD_LIGHT_TYPE = "lighttype";
   public static MD_VISIBILITY_TYPE = "visibilitytype";
   public static MD_HEIGHT = "height";
+
+  //Local Storage
+  public static LOCAL_STRG_USR_DTLS: string = 'userDetails';
+  public static LOCAL_STRG_USR_DTLS_ID: string = 'userDetailsId';
+  public static LOCAL_STRG_CART_DETAILS: string = 'cartDetails';
+
+  //Events Constants
+  public static EVENTS_UNAUTHORISED_USER: string = 'UNAUTHORISED_USER';
+  public static EVENTS_LOGIN_SUCCESS: string = 'LOGIN_SUCCESS';
 
   public static IS_SUCCESS = 1;
   public static IS_ERROR = 1;
