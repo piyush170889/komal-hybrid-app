@@ -29,6 +29,8 @@ import { Network } from '@ionic-native/network';
 import { HttpClientModule } from '@angular/common/http';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { FeedbackPage } from '../pages/feedback/feedback';
+import { ChangepassPage } from '../pages/changepass/changepass';
+import { VerifyOtpForgotpassPage } from '../pages/verify-otp-forgotpass/verify-otp-forgotpass';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { FeedbackPage } from '../pages/feedback/feedback';
     OrderPage,
     OrdersPage,
     AddProductPage,
-    FeedbackPage
+    FeedbackPage,
+    ChangepassPage,
+    VerifyOtpForgotpassPage
 
   ],
   imports: [
@@ -77,13 +81,15 @@ import { FeedbackPage } from '../pages/feedback/feedback';
     OrderPage,
     OrdersPage,
     AddProductPage,
-    FeedbackPage
+    FeedbackPage,
+    ChangepassPage,
+    VerifyOtpForgotpassPage
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     RestserviceProvider,
     ConstantsProvider,
     CommonUtilityProvider,
@@ -91,4 +97,4 @@ import { FeedbackPage } from '../pages/feedback/feedback';
     EmailComposer
   ]
 })
-export class AppModule {}
+export class AppModule { }

@@ -5,6 +5,7 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { CommonUtilityProvider } from '../../providers/common-utility/common-utility';
 import { RestserviceProvider } from '../../providers/restservice/restservice';
 import { ConstantsProvider } from '../../providers/constants/constants';
+import { VerifyOtpForgotpassPage } from '../verify-otp-forgotpass/verify-otp-forgotpass';
 
 /**
  * Generated class for the SendOtpPage page.
@@ -20,46 +21,64 @@ import { ConstantsProvider } from '../../providers/constants/constants';
 })
 export class SendOtpPage {
 
-  data:any ={};
-  cellnumber:string;
-  deviceInfo:string ="vivov7";
+  data: any = {};
+  cellnumber: string;
+  deviceInfo: string = "qwerty";
+  isForgotPass: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public commonUtility : CommonUtilityProvider,
-    public restService : RestserviceProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public commonUtility: CommonUtilityProvider,
+    public restService: RestserviceProvider) {
+
+    this.isForgotPass = this.navParams.get('isForgotPass');
   }
 
   openVerifyOtp() {
+
     this.data = {
-      "request":
-        {
-          "cellnumber":this.cellnumber,
-          "deviceInfo":this.deviceInfo
+      request:
+      {
+        cellnumber: this.cellnumber,
+        deviceInfo: this.deviceInfo
       }
-    }
+    };
 
     let sendOtpUrl = ConstantsProvider.API_BASE_URL + ConstantsProvider.API_ENDPOINT_SEND_OTP;
-   this.restService.postDetails(sendOtpUrl,this.data).subscribe(res => {
-     if(res.responseMessage.status == '200'){
-      this.commonUtility.presentToast('OTP Sent in message',5000);
-      console.log('Response : '+JSON.stringify(res));
-       this.navCtrl.push(VerifyOtpPage,{
-         cellnumber:this.cellnumber,
-         deviceInfo:this.deviceInfo
-       });
-     }else{
-       this.commonUtility.presentToast(res.responseMessage.message,5000);
-     }
-   });
+
+    this.restService.postDetails(sendOtpUrl, this.data).subscribe(res => {
+
+      if (res.responseMessage.status == '200') {
+
+        this.commonUtility.presentToast('OTP Sent in message', 5000);
+        console.log('Response : ' + JSON.stringify(res));
+
+        if (this.isForgotPass) {
+          this.navCtrl.push(VerifyOtpForgotpassPage, {
+            cellnumber: this.cellnumber,
+            deviceInfo: this.deviceInfo
+          });
+        } else {
+          this.navCtrl.push(VerifyOtpPage, {
+            cellnumber: this.cellnumber,
+            deviceInfo: this.deviceInfo
+          });
+        }
+      } else {
+
+        this.commonUtility.presentToast(res.responseMessage.message, 5000);
+      }
+    });
 
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SendOtpPage');
   }
 
- 
 
-  openForgetPass(){
+
+  openForgetPass() {
     this.navCtrl.push(ForgotPasswordPage);
   }
 

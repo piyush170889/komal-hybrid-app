@@ -20,7 +20,7 @@ import { CommonUtilityProvider } from '../../providers/common-utility/common-uti
 export class UserRegistrationPage {
   toggle = "Show";
 
-  userDtls:any={};
+  userDtls: any = {};
   cntc_num: string;
   firstName: string;
   lastName: string;
@@ -73,5 +73,12 @@ export class UserRegistrationPage {
 
 
     });
+  }
+
+  gotologinPage() {
+
+    console.log('gotologinPage UserRegistrationPage');
+
+    this.navCtrl.setRoot(LoginPage);
   }
 }

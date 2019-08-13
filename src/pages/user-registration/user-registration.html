@@ -15,7 +15,7 @@
     </ion-row>
     <ion-row>
       <ion-col col-12>
-        <ion-input type="text" class="input-format" [(ngModel)]="userDtls.cntc_num" placeholder="Contact No.*" required></ion-input>
+        <ion-input type="text" class="input-format" disabled="true" [(ngModel)]="userDtls.cntc_num" placeholder="Contact No.*" required></ion-input>
         <hr class="horizonta-line-format">
       </ion-col>
     </ion-row>
@@ -39,5 +39,5 @@
   <!-- <ion-input type="text" style="color: white;" placeholder="Contact No.*" required></ion-input>
       <hr style="background-color: #009088; width: 100%;"> -->
   <br><button ion-button  (click)="gotoLogin()"  ion-button class="button-format">REGISTER</button>
-<ion-label class="label-format-1">Already have an account? Login</ion-label>
+<ion-label class="label-format-1" (click)="gotologinPage()">Already have an account? Login</ion-label>
 </ion-content>

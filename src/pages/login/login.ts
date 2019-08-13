@@ -89,11 +89,15 @@ export class LoginPage {
   }
 
   sendOtpRegister() {
-    this.navCtrl.push(SendOtpPage);
+    this.navCtrl.push(SendOtpPage, {
+      isForgotPass: false
+    });
   }
 
   openSendOtp() {
-    this.navCtrl.push(SendOtpPage);
+    this.navCtrl.push(SendOtpPage, {
+      isForgotPass: true
+    });
   }
 
 

@@ -80,7 +80,7 @@ export class CartProductsReviewPage {
   }
 
   gotoProfile() {
-    this.navCtrl.push(ProfilePage);
+    this.navCtrl.setRoot(ProfilePage);
   }
 
   placeOrder() {

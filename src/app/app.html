@@ -1,7 +1,15 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar color="navcol">
-      <ion-title>Menu</ion-title>
+      <button menuClose text-center ion-item color="navcol" *ngIf="userDetails == null">
+        Menu
+      </button>
+      <button menuClose text-center ion-item color="navcol" *ngIf="userDetails != null" (click)="openProfilePage()">
+        {{userDetails.firstName}} {{userDetails.lastName}}
+      </button>
+      <!-- <ion-title text-center *ngIf="userDetails == null">Menu</ion-title> -->
+      <!-- <ion-title text-center *ngIf="userDetails != null" (click)="openProfilePage()">{{userDetails.firstName}}
+        {{userDetails.lastName}}</ion-title> -->
     </ion-toolbar>
   </ion-header>
 

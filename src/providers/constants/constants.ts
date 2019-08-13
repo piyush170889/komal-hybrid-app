@@ -31,6 +31,11 @@ export class ConstantsProvider {
   public static API_ENDPOINT_ORDER_LIST = "cartdetails";
   public static API_ENDPOINT_SUBCATEGORY_PRODUCT = "mproductdetails";
   public static API_ENDPOINT_GST = "gst";
+  public static API_ENDPOINT_USERPROFILE = "getuserprofileinfo";
+  public static API_ENDPOINT_USER_DTLS = 'userdetails';
+  public static API_ENDPOINT_CHANGE_PASS = 'changepassword';
+  public static API_ENDPOINT_RESETPASS = 'resetpassword';
+
 
   //Master Data JSON key names
   public static API_ENDPOINT_MASTER_DATA = "ext/master";

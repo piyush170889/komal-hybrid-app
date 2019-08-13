@@ -9,6 +9,7 @@ import { OrdersPage } from '../pages/orders/orders';
 import { HomeScreenPage } from '../pages/home-screen/home-screen';
 import { FeedbackPage } from '../pages/feedback/feedback';
 import { ConstantsProvider } from '../providers/constants/constants';
+import { ProfilePage } from '../pages/profile/profile';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,7 @@ import { ConstantsProvider } from '../providers/constants/constants';
 export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = HomeScreenPage;
+  rootPage: any;
   pages: Array<{ title: string, component: any }>;
   userDetails: any = {};
   pageName: { title: string, component: any };
@@ -42,6 +43,8 @@ export class MyApp {
       () => {
         this.getSideMenu();
       });
+
+    this.rootPage = HomeScreenPage;
   }
 
   initializeApp() {
@@ -69,21 +72,24 @@ export class MyApp {
   getSideMenu() {
 
     this.userDetails = localStorage.getItem(ConstantsProvider.LOCAL_STRG_USR_DTLS);
+    console.log('UserDetails = ' + JSON.stringify(this.userDetails));
 
     setTimeout(
       () => {
         if (this.userDetails != null && this.userDetails != '') {
+          this.userDetails = JSON.parse(this.userDetails);
+
           this.pages = [
             { title: 'Home', component: HomeScreenPage },
             { title: 'Track Order', component: OrdersPage },
-            { title: 'Feedback', component: FeedbackPage },
+            // { title: 'Feedback', component: FeedbackPage },
             { title: 'Contact Us', component: ContactusPage },
             { title: 'Logout', component: LoginPage }
           ];
         } else {
           this.pages = [
             { title: 'Home', component: HomeScreenPage },
-            { title: 'Feedback', component: FeedbackPage },
+            // { title: 'Feedback', component: FeedbackPage },
             { title: 'Contact Us', component: ContactusPage },
             { title: 'Login', component: LoginPage },
           ];
@@ -92,5 +98,10 @@ export class MyApp {
       1000
     );
 
+  }
+
+  openProfilePage() {
+
+    this.nav.setRoot(ProfilePage);
   }
 }
